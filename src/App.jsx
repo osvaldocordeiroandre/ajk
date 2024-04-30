@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import { FaLinkedin, FaGithub  } from "react-icons/fa";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { FaArrowRotateRight } from "react-icons/fa6";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { TbWorldShare } from "react-icons/tb";
-import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import AsideRight from '../src/components/aside/AsideRight'
 import HeaderLeft from '../src/components/headerLeft/HeaderLeft'
 import Content from '../src/components/content/Content'
 
+import { DarkModeContext } from './context/Mode';
+
 export default function App() {
+  const [darkMode, setDarkMode] = useContext(DarkModeContext);
+
   return (
-    <div className='bg-zinc-800 w-full h-screen flex flex-col justify-center items-center'>
+    <div className='bg-zinc-800 w-full h-screen flex flex-col justify-center items-center' style={{backgroundColor: darkMode ? '#fff' : '#27272A', transition: '.5s'}}>
       <div className='bg-zinc-900 max-w-[1300px] w-full h-full max-h-[600px] rounded-lg overflow-hidden overflow-y-scroll shadow-2xl'>
         <div className='fixed max-w-[1300px] w-full bg-zinc-900'>
           <div className='flex justify-between'>
@@ -57,13 +61,17 @@ export default function App() {
           <div className='bg-zinc-700 w-full h-10 mt-2 rounded-lg flex items-center'>
             <div className='flex ml-4'>
               <div className='cursor-pointer'>
-                <IoIosArrowBack color='orange' size={20}/>
+                <IoIosArrowBack color='orange' size={20} />
               </div>
               <div className='ml-4 cursor-pointer'>
-                <IoIosArrowForward color='orange' size={20}/>
+                <IoIosArrowForward color='orange' size={20} />
               </div>
               <div className='ml-4 cursor-pointer'>
-                <FaArrowRotateRight size={20} />
+                {!darkMode ? (
+                  <FaArrowRotateRight size={20} color='white' onClick={() => setDarkMode(true)} />
+                ) : (
+                  <FaArrowRotateRight size={20} color='black' onClick={() => setDarkMode(false)} />
+                )}
               </div>
             </div>
             <div className='bg-zinc-800 w-full h-8 rounded-full ml-4 flex items-center'>
@@ -72,12 +80,12 @@ export default function App() {
           </div>
         </div>
 
-        <div className='bg-zinc-800 flex w-full h-screen mt-16'>
-          <main className='w-full text-white flex'>
+        <div className='bg-zinc-800 flex w-full h-screen mt-16' style={{backgroundColor: darkMode ? '#fff' : '#27272A', transition: '.5s'}}>
+          <main className='w-full text-white flex' style={{color: darkMode ? 'black' : 'white', transition: '.5s'}}>
             <HeaderLeft />
             <Content />
           </main>
-          <AsideRight/>
+          <AsideRight />
         </div>
       </div>
       <div>
