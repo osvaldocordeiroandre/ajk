@@ -14,7 +14,7 @@ export default function App() {
   return (
     <div className='bg-zinc-800 w-full h-screen flex flex-col justify-center items-center'>
       <div className='bg-zinc-900 max-w-[1300px] w-full h-full max-h-[600px] rounded-lg overflow-hidden overflow-y-scroll shadow-2xl'>
-        <div className='fixed w-[1300px] bg-zinc-900'>
+        <div className='fixed max-w-[1300px] w-full bg-zinc-900'>
           <div className='flex justify-between'>
             <div className='flex gap-1'>
               <a href="https://www.linkedin.com/in/osvaldo-cordeiro-andr%C3%A9-009760231/" target='_blank'>
